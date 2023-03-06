@@ -21,10 +21,10 @@ public class JavalinSingleton {
          * Note: Please refer to the "RequestBody.MD" file for more assistance.
          */
         app.post("/echo", ctx -> {
-            
-            //implement logic here
-                
+            String jsonString=ctx.body();
+            ctx.json(om.readValue(jsonString,Song.class));
         });
+
 
         /**
          * problem2: retrieve the song object from the request body...
@@ -34,9 +34,10 @@ public class JavalinSingleton {
          * Note: Please refer to the "RequestBody.MD" file for more assistance.
          */
         app.post("/changeartisttobeatles", ctx -> {
-
-            //implement logic here
-               
+            String jsonString=ctx.body();
+            Song altered_track = om.readValue(jsonString,Song.class);
+            altered_track.setArtistName("Beatles");
+            ctx.json(altered_track);         
         });
 
 
